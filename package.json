@@ -1,0 +1,7 @@
+{
+  "name": "com.playablefactory.record",
+  "displayName": "Record",
+  "version": "1.0.2",
+  "unity": "2020.2",
+  "description": "Record video from unity"
+}
