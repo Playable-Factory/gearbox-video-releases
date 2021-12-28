@@ -1,91 +1,134 @@
 # Quick Start Guide
+Supported Unity Versions: 2019, 2020
 
-```
-Supported Unity Version: 2020
-```
-## 1. Install the plugin
+## 1. Installation
 
-Plugin is installed through Unity package manager. Browse through **Window** > **Package
-Manager** , and select **Add Package from disk**
+Plugin is installed through Unity package manager. Browse through **Window** > **Package Manager**, and select **Add Package from disk**
 
 Browse through the plugin **package.json** file and add it
 
-
 Now its added in your Unity Package Manager
 
-## 2. Setup Config Variables
+## 2. Configuration
 
-Create a **Resources** folder inside Project **Assets** folder. Browse to **Record** > **Config**
+Create a **Resources** folder in your project **Assets** folder
 
-**RecordConfig** will be created inside **Resources** folder. You can add Int, Float, String and
-Boolean config variables which can be accessed on runtime to modify the gameplay.
+### 2.1 Built-in Parameters
 
+Plugin provides the following built-in parameters to improve things for developers
 
-Now all the config variables can be accessed in code using **PlayableFactory** namespace and
-**Config** class.
+#### 2.1.1 RandomSeed
 
-_PlayableFactory.Config.GetInt(“config variable name string”);_
+When using any kind of third party Random value generator other than Unity, it must be initialized with built-in seed value like mentioned below
 
-## 3. Build and Upload
+`PlayableFactory.Config.GetRandomSeed();`
+
+If a project is using Unity Random Class then it is already initialized with a value which can be changed. To change it, browse through **Record** > **Config** and change the value under **Random Seed**
+
+### 2.2 Custom Parameters
+
+There are seven types of custom parameters which can be created and used later on the web dashboard to reflect gameplay changes. They are **Integers**, **Floats**, **Bools**, **Strings**, **Colors**, **Sliders** and **Dropdowns**. 
+
+In order to set them up, browse through **Record** > **Config** and add them under their respective section with their default values. 
+
+To use a custom parameter to reflect instant changes during gameplay on record or replay, create a delegate method and subscribe it to the following event
+
+`PlayableFactory.ConfigHandler.OnConfigChanged`
+
+After that inside delegate method get the parameters according to its type like below
+
+#### 2.2.1 Integer
+
+Returns the **int** type value on integer type parameter
+
+`PlayableFactory.Config.GetInt(“parameter-name”);`
+
+#### 2.2.2 Float
+
+Returns the **float** type value on float type parameter
+
+`PlayableFactory.Config.GetFloat(“parameter-name”);`
+
+#### 2.2.3 String
+
+Returns the **string** type value on string type parameter
+
+`PlayableFactory.Config.GetString(“parameter-name”);`
+
+#### 2.2.4 Bool
+
+Returns the **bool** type value on bool type parameter
+
+`PlayableFactory.Config.GetBool(“parameter-name”);`
+
+#### 2.2.5 Color
+
+Returns the **UnityEngine.Color** type value on color type parameter
+
+`PlayableFactory.Config.GetColor(“parameter-name”);`
+
+#### 2.2.6 Slider
+
+Returns the **float** type value (ranged from 0.0 to 1.0) on slider type parameter
+
+`PlayableFactory.Config.GetSlider(“parameter-name”);`
+
+#### 2.2.7 Dropdown
+
+Returns the **string** type value on (from the string based selectable options) on dropdown type parameter
+
+`PlayableFactory.Config.GetDropdown(“parameter-name”);`
+
+## 3. Export
 
 If there are no errors on Unity console, you can proceed to build
 
-First make sure all the relevant scenes are added in the **Build Settings** and platform is switched
-to **WebGL**
+Make sure all the relevant scenes are added in the **File** > **Build Settings** and platform **WebGL** is also installed
 
+### 3.1 Login
 
-Browse **Record** > **Build** , and enter the username and password to login into the plugin
+Browse through **Record** > **Build**, and enter the username and password to login into the plugin
 
-After login, you can configure the optimization settings and name. Then select **Build**
+### 3.2 Build and Upload
 
-It will take few minutes, and will print the results in Unity console. If the build fails it will show the
-errors in the Unity console which should be addressed first before attempting to build again.
+After Login, you can specify the **Game Name**, **Template Name** along with its **Icon**, which will be reflected in the web dashboard as well.
 
-If build succeeds then it will attempt to upload and show the upload status. If upload is successful
-then you can now open dashboard and can see the game.
+You can change the **Build Settings** to optimize or tweak which linked to WebGL player export settings in Unity
 
+Click **Build** to build and export the game to web dashboard
+
+It will take a few minutes, and will print the results in the Unity console. If the build fails it will show the errors in the Unity console which should be addressed first before attempting to build again. 
+
+If build succeeds then it will attempt to upload and show the upload status. If upload is successful then you can now open the dashboard and can see the game.
 
 ## 4. Known Issues
 
-### Invalid Credentials on Login
+### 4.1 Invalid Credentials on Login
 
-If your credentials are correct please make sure you are connected to the internet.
+If your credentials are correct please make sure you are connected to the internet. If everything is correct at your end, try it again after sometime (as it could be due to server downtime for maintenance)
 
-### Upload Failed after Build Failed
+### 4.2 Upload Failed after Build Failed
 
-Unity console will print out the errors that are causing the build to fail. Most of the errors are
-associated with third party plugins, so you need to comment out those references in your game
-code or remove the plugins completely if errors still persist.
+Unity console will print out the errors that are causing the build to fail. Most of the errors are associated with third party plugins, so you need to comment out those references in your game code or remove the plugins completely if errors still persist. 
 
 List of known files and plugins that conflict are
 
-- Newtonsoft.Json
+#### 4.2.1 Newtonsoft.Json
 
-    - Unity has now included Newtonsoft.Json as part of their own bundle after 2019, if you are using
-it externally then either you can remove the external file and refer to the built-in Unity has
-provided or you can simply remove Unity Collab package from the Package manager (that
-already includes the Newtonsoft.Json to avoid the redundancy errors)
+Unity has now included Newtonsoft.Json as part of their own bundle after 2019, if you are using it externally then either you can remove the external file and refer to the built-in Unity has provided or you can simply remove Unity Collab package from the Package manager (that already includes the Newtonsoft.Json to avoid the redundancy errors)
 
-- Firebase Analytics
+#### 4.2.2 Firebase Analytics
 
-    - Google Firebase Analytics plugins can cause the conflict, try to remove the its references in your
-game code or remove the plugin completely if error still persist.
+Google Firebase Analytics plugins can cause the conflict, try to remove its references in your game code or remove the plugin completely if errors still persist
 
-- NaughtyAttributes
+#### 4.2.3 NaughtyAttributes
 
-    - In some rare cases the third party Unity extension NaughtyAttributes can cause some conflict,
-try to remove the its references in your game code or remove the plugin completely if error still
-persist.
+In some rare cases the third party Unity extension NaughtyAttributes can cause some conflict, try to remove the its references in your game code or remove the plugin completely if errors still persist
 
-- VoodooSauce
+#### 4.2.4 VoodooSauce
 
-    - In some rare cases the third party Unity extension VoodooSauce can cause some conflict, try to
-remove the its references in your game code or remove the plugin completely if error still persist.
+In some rare cases the third party Unity extension VoodooSauce can cause some conflict, try to remove the its references in your game code or remove the plugin completely if errors still persist
 
-### Upload Failed after Build Successful
+### 4.3 Upload Failed after Build Successful
 
-Please make sure you are connected to the internet and you are not getting any time out errors. If
-everything is perfect at your end, try it again after sometime (as it could be due to server
-downtime for maintenance)
-
-
+Please make sure you are connected to the internet and you are not getting any timeout errors. If everything is perfect at your end, try it again after sometime (as it could be due to server downtime for maintenance)

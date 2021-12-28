@@ -15,6 +15,9 @@ mergeInto(LibraryManager.library, {
         window.__start();
     },
     
+    OnGameStart: function() {
+        window.__onGameStart();
+    },
     
     Update: function(level) {
         window.__update(level);
