@@ -1,6 +1,8 @@
 # Quick Start Guide
 Supported Unity Versions: 2020
 
+* Do not use any 3rd party SDK that sends or receives data (like advertisements, analytics, etc.) See section 4.3 for details *
+
 ## 1. Installation
 
 Plugin is installed through Unity package manager. Browse through **Window** > **Package Manager**, and select **Add Package from disk**
@@ -117,7 +119,7 @@ Process input events ideally in **Update()** method. **Awake()**, **Start()**, *
 
 ### 4.3 3rd Party SDKs
 
-Any SDK or Kit that involves advertisement or that send / receive any kind of analytics data to the server outside must be avoided at all cost. Since the server delay can effect the gameplay.
+Any SDK or Kit that involves advertisement or that send / receive any kind of analytics data to the server outside must be avoided at all cost. Since the server delay can effect the gameplay. Also make sure the game is not sending or receiving data to any web service outside.
 
 ## 5. Known Issues
 
