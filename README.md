@@ -1,5 +1,5 @@
 # Quick Start Guide
-Supported Unity Versions: 2019, 2020
+Supported Unity Versions: 2020
 
 ## 1. Installation
 
@@ -31,11 +31,13 @@ There are seven types of custom parameters which can be created and used later o
 
 In order to set them up, browse through **Record** > **Config** and add them under their respective section with their default values. 
 
-To use a custom parameter to reflect instant changes during gameplay on record or replay, create a delegate method and subscribe it to the following event
+All parameters changes are reflected instantly, to get notified when parameters instantly changes during gameplay on record or replay, create a delegate method and subscribe it to the following event
 
 `PlayableFactory.ConfigHandler.OnConfigChanged`
 
-After that inside delegate method get the parameters according to its type like below
+A special **Restart** option can be marked checked on any parameter which will require the game to be restarted as soon as the parameter is changed
+
+Below are different types of parameters and how they can be accessed, inside the editor they will always return the default value
 
 #### 2.2.1 Integer
 
@@ -101,34 +103,50 @@ It will take a few minutes, and will print the results in the Unity console. If 
 
 If build succeeds then it will attempt to upload and show the upload status. If upload is successful then you can now open the dashboard and can see the game.
 
-## 4. Known Issues
+## 4. Guidelines for Modules
 
-### 4.1 Invalid Credentials on Login
+### 4.1 Physics
+
+If game is physics intensive then you can enable the Enhanced Determinism option to reduce the unpredictability in replays, to enable browse through **Edit** > **Project Settings** > **Physics** and enable **Enable Enhanced Determinism**
+
+Use **FixedUpdate()** method for physics based calculations, specially for dynamic physics (non-kinematic rigidbodies). Do not process input events inside **FixedUpdate()** method as Unity does not guarantee their accuracy on multiple runs
+
+### 4.2 Input
+
+Process input events ideally in **Update()** method. **Awake()**, **Start()**, **PreUpdate()** and **LateUpdate()** are also okay, but do not process input in **FixedUpdate()** method.
+
+### 4.3 3rd Party SDKs
+
+Any SDK or Kit that involves advertisement or that send / receive any kind of analytics data to the server outside must be avoided at all cost. Since the server delay can effect the gameplay.
+
+## 5. Known Issues
+
+### 5.1 Invalid Credentials on Login
 
 If your credentials are correct please make sure you are connected to the internet. If everything is correct at your end, try it again after sometime (as it could be due to server downtime for maintenance)
 
-### 4.2 Upload Failed after Build Failed
+### 5.2 Upload Failed after Build Failed
 
 Unity console will print out the errors that are causing the build to fail. Most of the errors are associated with third party plugins, so you need to comment out those references in your game code or remove the plugins completely if errors still persist. 
 
 List of known files and plugins that conflict are
 
-#### 4.2.1 Newtonsoft.Json
+#### 5.2.1 Newtonsoft.Json
 
 Unity has now included Newtonsoft.Json as part of their own bundle after 2019, if you are using it externally then either you can remove the external file and refer to the built-in Unity has provided or you can simply remove Unity Collab package from the Package manager (that already includes the Newtonsoft.Json to avoid the redundancy errors)
 
-#### 4.2.2 Firebase Analytics
+#### 5.2.2 Firebase Analytics
 
 Google Firebase Analytics plugins can cause the conflict, try to remove its references in your game code or remove the plugin completely if errors still persist
 
-#### 4.2.3 NaughtyAttributes
+#### 5.2.3 NaughtyAttributes
 
 In some rare cases the third party Unity extension NaughtyAttributes can cause some conflict, try to remove the its references in your game code or remove the plugin completely if errors still persist
 
-#### 4.2.4 VoodooSauce
+#### 5.2.4 VoodooSauce
 
 In some rare cases the third party Unity extension VoodooSauce can cause some conflict, try to remove the its references in your game code or remove the plugin completely if errors still persist
 
-### 4.3 Upload Failed after Build Successful
+### 5.3 Upload Failed after Build Successful
 
 Please make sure you are connected to the internet and you are not getting any timeout errors. If everything is perfect at your end, try it again after sometime (as it could be due to server downtime for maintenance)

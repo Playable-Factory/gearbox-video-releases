@@ -22,6 +22,10 @@ mergeInto(LibraryManager.library, {
     Update: function(level) {
         window.__update(level);
     },
+    
+    Output: function(value) {
+	console.log(Pointer_stringify(value));
+    },
 
     PutReplay: function(input) {
         var urlParams = new URLSearchParams(location.search);
