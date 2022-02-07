@@ -25,13 +25,13 @@ When using any kind of third party Random value generator other than Unity, it m
 
 `PlayableFactory.Config.GetRandomSeed();`
 
-If a project is using Unity Random Class then it is already initialized with a value which can be changed. To change it, browse through **Record** > **Config** and change the value under **Random Seed**
+If a project is using Unity Random Class then it is already initialized with a value which can be changed. To change it, browse through **Gearbox Video** > **Config** and change the value under **Random Seed**
 
 ### 2.2 Custom Parameters
 
 There are seven types of custom parameters which can be created and used later on the web dashboard to reflect gameplay changes. They are **Integers**, **Floats**, **Bools**, **Strings**, **Colors**, **Sliders** and **Dropdowns**. 
 
-In order to set them up, browse through **Record** > **Config** and add them under their respective section with their default values. 
+In order to set them up, browse through **Gearbox Video** > **Config** and add them under their respective section with their default values. 
 
 All parameters changes are reflected instantly, to get notified when parameters instantly changes during gameplay on record or replay, create a delegate method and subscribe it to the following event
 
@@ -91,7 +91,7 @@ Make sure all the relevant scenes are added in the **File** > **Build Settings**
 
 ### 3.1 Login
 
-Browse through **Record** > **Build**, and enter the username and password to login into the plugin
+Browse through **Gearbox Video** > **Build**, and enter the username and password to login into the plugin
 
 ### 3.2 Build and Upload
 
@@ -119,7 +119,7 @@ Process input events ideally in **Update()** method. **Awake()**, **Start()**, *
 
 ### 4.3 3rd Party SDKs
 
-Any SDK or Kit that involves advertisement or that send / receive any kind of analytics data to the server outside must be avoided at all cost. Since the server delay can effect the gameplay. Also make sure the game is not sending or receiving data to any web service outside.
+Any SDK or Kit that involves advertisement or that send / receive any kind of analytics data to the server outside must be avoided at all cost. Since the server delay can effect the gameplay.
 
 ## 5. Known Issues
 
