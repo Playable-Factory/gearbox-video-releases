@@ -121,6 +121,10 @@ Process input events ideally in **Update()** method. **Awake()**, **Start()**, *
 
 Any SDK or Kit that involves advertisement or that send / receive any kind of analytics data to the server outside must be avoided at all cost. Since the server delay can effect the gameplay.
 
+### 4.4 Streaming Assets
+
+According to Unity, to read streaming Assets on WebGL, where you cannot access streaming Asset files directly, use **UnityWebRequest**
+
 ## 5. Known Issues
 
 ### 5.1 Invalid Credentials on Login
