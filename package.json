@@ -1,7 +1,7 @@
 {
   "name": "com.playablefactory.record",
   "displayName": "Gearbox Video",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "unity": "2019.3",
   "description": "Record video from unity"
 }

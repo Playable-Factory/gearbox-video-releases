@@ -1,10 +1,7 @@
 # Quick Start Guide
-Supported Unity Versions: 2020 (Coming soon 2019 LTS)
+Supported Unity Versions: 2019 LTS, 2020 LTS
 
 *Do not use any 3rd party SDK that sends or receives data (like advertisements, analytics, etc.) See section 4.3 for details*
-
-## Tutorial Video
-[![thumbnail](https://user-images.githubusercontent.com/7584428/153880844-5f407c8d-2ab1-4453-9a7d-bfbb6485f7a2.jpg)](https://www.youtube.com/watch?v=pdCCV_SOgIw&ab_channel=PlayableFactory)
 
 ## 1. Installation
 
@@ -76,15 +73,37 @@ Returns the **UnityEngine.Color** type value on color type parameter
 
 #### 2.2.6 Slider
 
-Returns the **float** type value (ranged from 0.0 to 1.0) on slider type parameter
+Returns the **float** type value (ranged from 0 to 100) on slider type parameter
 
 `PlayableFactory.Config.GetSlider(“parameter-name”);`
 
 #### 2.2.7 Dropdown
 
-Returns the **string** type value on (from the string based selectable options) on dropdown type parameter
+Returns the **string** type value (from the string based selectable options) on dropdown type parameter
 
 `PlayableFactory.Config.GetDropdown(“parameter-name”);`
+
+Returns the **int** type value index (from the string based selectable options) on dropdown type parameter
+
+`PlayableFactory.Config.GetDropdownIndex(“parameter-name”);`
+
+#### 2.2.8 Vector2D
+
+Returns the **UnityEngine.Vector2** type value on vector 2D type parameter
+
+`PlayableFactory.Config.GetVector2D(“parameter-name”);`
+
+#### 2.2.9 Vector3D
+
+Returns the **UnityEngine.Vector3** type value on vector 3D type parameter
+
+`PlayableFactory.Config.GetVector3D(“parameter-name”);`
+
+#### 2.2.10 Vector4D
+
+Returns the **UnityEngine.Vector4** type value on vector 4D type parameter
+
+`PlayableFactory.Config.GetVector4D(“parameter-name”);`
 
 ## 3. Export
 
