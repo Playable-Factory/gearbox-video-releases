@@ -3,6 +3,9 @@ Supported Unity Versions: 2019 LTS, 2020 LTS
 
 *Do not use any 3rd party SDK that sends or receives data (like advertisements, analytics, etc.) See section 4.3 for details*
 
+## Tutorial Video
+[![thumbnail](https://user-images.githubusercontent.com/7584428/153880844-5f407c8d-2ab1-4453-9a7d-bfbb6485f7a2.jpg)](https://www.youtube.com/watch?v=pdCCV_SOgIw&ab_channel=PlayableFactory)
+
 ## 1. Installation
 
 Plugin is installed through Unity package manager. Browse through **Window** > **Package Manager**, and select **Add Package from disk**
