@@ -1,4 +1,7 @@
 # Quick Start Guide
+
+Version 1.2
+
 Supported Unity Versions: 2019 LTS, 2020 LTS
 
 *Do not use any 3rd party SDK that sends or receives data (like advertisements, analytics, etc.) See section 4.3 for details*
@@ -32,13 +35,15 @@ If a project is using Unity Random Class then it is already initialized with a v
 
 ### 2.2 Custom Parameters
 
-There are seven types of custom parameters which can be created and used later on the web dashboard to reflect gameplay changes. They are **Integers**, **Floats**, **Bools**, **Strings**, **Colors**, **Sliders** and **Dropdowns**. 
+There are different types of custom parameters which can be created and used later on the web dashboard to reflect gameplay changes. They are **Integers**, **Floats**, **Bools**, **Strings**, **Colors**, **Sliders**, **Dropdowns**, **Vectors 2D**, **Vectors 3D**, **Vectors 4D** and **JSON Files**.
 
 In order to set them up, browse through **Gearbox Video** > **Config** and add them under their respective section with their default values. 
 
 All parameters changes are reflected instantly, to get notified when parameters instantly changes during gameplay on record or replay, create a delegate method and subscribe it to the following event
 
 `PlayableFactory.ConfigHandler.OnConfigChanged`
+
+Subscribe them in **Start()** method and ownwards. Do not use them in **Awake()** method.
 
 A special **Restart** option can be marked checked on any parameter which will require the game to be restarted as soon as the parameter is changed
 
@@ -107,6 +112,64 @@ Returns the **UnityEngine.Vector3** type value on vector 3D type parameter
 Returns the **UnityEngine.Vector4** type value on vector 4D type parameter
 
 `PlayableFactory.Config.GetVector4D(“parameter-name”);`
+
+#### 2.2.11 JSON File
+
+Returns the generic type value on JSON file type parameter after parsing the JSON file
+
+`PlayableFactory.Config.GetJSONFile<GenericTypeT>("parameter-name")`
+
+**Example** on how to use the JSON file for a parameter named "properties"
+*JSON File*
+```
+{
+    "id": 0,
+    "type": "robot",
+    "speed": 2.5,
+    "tags": [
+        "player",
+        "enemy",
+        "ai"
+    ],
+    "layers": [
+        {
+            "id": 0,
+            "name": "water"
+        },
+        {
+            "id": 1,
+            "name": "soil"
+        },
+        {
+            "id": 2,
+            "name": "grass"
+        }
+    ]
+}
+```
+
+*Generic Type Class Example*
+```
+[System.Serializable]
+public class Properties
+{
+    public int id;
+    public string type;
+    public float speed;
+    public List<string> tags;
+    public List<Layer> layers;
+}
+
+[System.Serializable]
+public class Layer
+{
+    public int id;
+    public string name;
+}
+```
+Now in order to access the contents of JSON File, simply use
+
+`PlayableFactory.Config.GetJSONFile<Properties>("Properties")`
 
 ## 3. Export
 
