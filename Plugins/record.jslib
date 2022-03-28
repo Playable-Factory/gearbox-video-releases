@@ -11,12 +11,16 @@ mergeInto(LibraryManager.library, {
     },
     
     
-    Start: function() {
+    OnAppStart: function() {
         window.__start();
     },
     
     OnGameStart: function() {
         window.__onGameStart();
+    },
+
+    OnSceneStart: function(value) {
+	console.log(Pointer_stringify(value));
     },
     
     Update: function(level) {
