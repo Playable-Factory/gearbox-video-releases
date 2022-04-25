@@ -10,17 +10,13 @@ mergeInto(LibraryManager.library, {
         return buffer;
     },
     
-    
-    OnAppStart: function() {
-        window.__start();
-    },
-    
     OnGameStart: function() {
-        window.__onGameStart();
+        console.log("GVTK :: Settings.OnGameStart()");
+	window.__onGameStart();
     },
 
     OnSceneStart: function(value) {
-	console.log(Pointer_stringify(value));
+	console.log("GVTK :: Settings.OnSceneStart("+Pointer_stringify(value)+")");
     },
     
     Update: function(level) {
