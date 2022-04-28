@@ -258,3 +258,29 @@ In some rare cases the third party Unity extension VoodooSauce can cause some co
 ### 5.3 Upload Failed after Build Successful
 
 Please make sure you are connected to the internet and you are not getting any timeout errors. If everything is perfect at your end, try it again after sometime (as it could be due to server downtime for maintenance)
+
+### 5.4 System.ComponentModel.Win32Exception
+
+Apple has removed Python 2.7 after Mac OS 12.3.1, and this is causing problems for WebGL build on Unity 2019 LTS and Unity 2020 LTS
+
+In order to resolve the issue, the first step is to download and install Python 2.7 externally from [here](https://www.python.org/downloads/release/python-2718/) for macOS 64-bit
+
+Finally, create **PreBuildProcessing.cs** class in **Assets** > **Editor** with the following code
+
+```
+#if UNITY_EDITOR
+using UnityEditor;
+using UnityEditor.Build;
+using UnityEditor.Build.Reporting;
+using UnityEngine;
+
+public class PreBuildProcessing : IPreprocessBuildWithReport
+{
+    public int callbackOrder => 1;
+    public void OnPreprocessBuild(BuildReport report)
+    {
+        System.Environment.SetEnvironmentVariable("EMSDK_PYTHON", "/Library/Frameworks/Python.framework/Versions/2.7/bin/python");
+    }
+}
+#endif
+```
