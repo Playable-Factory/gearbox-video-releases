@@ -1,4 +1,4 @@
-# Quick Start Guide (Version 1.5)
+# Quick Start Guide (Version 1.6)
 Supported Unity Versions: 2019 LTS, 2020 LTS, 2021 LTS
 
 *Do not use any 3rd party SDK that sends or receives data (like advertisements, analytics, etc.) See section 4.3 for details*

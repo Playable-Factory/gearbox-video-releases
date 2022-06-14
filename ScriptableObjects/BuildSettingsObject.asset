@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -867651590, guid: 476c9abe313912d4a96c1da1d20b91f8, type: 3}
+  m_Script: {fileID: -867651590, guid: 44b5c20bf778c8b4bb3625fec88a14d3, type: 3}
   m_Name: BuildSettingsObject
   m_EditorClassIdentifier: 
   BakeCollisionMeshes: 1
